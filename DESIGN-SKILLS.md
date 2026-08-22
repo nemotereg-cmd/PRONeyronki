@@ -54,17 +54,25 @@ python3 .claude/skills/ui-ux-pro-max/scripts/search.py "elegant serif" --domain 
 }
 ```
 
-### Что нужно сделать вручную
+### Где лежит ключ
 
-1. Получить API-ключ на https://21st.dev/mcp (старые ключи Magic сброшены и не работают).
-2. Экспортировать его в окружение перед запуском Claude Code:
+Ключ **не хранится в репозитории**. В `.mcp.json` только подстановка
+`${TWENTY_FIRST_API_KEY}`, а само значение — в локальном, игнорируемом git файле
+`.claude/settings.local.json`:
 
-   ```bash
-   export TWENTY_FIRST_API_KEY="ваш_ключ"
-   ```
+```json
+{
+  "env": {
+    "TWENTY_FIRST_API_KEY": "21st_sk_..."
+  }
+}
+```
 
-   Ключ не хранится в репозитории — в `.mcp.json` только подстановка переменной.
-3. Перезапустить Claude Code и подтвердить подключение MCP-сервера из проекта.
+Этот файл добавлен в `.gitignore`. Эквивалентный вариант — просто
+`export TWENTY_FIRST_API_KEY="..."` в своей оболочке перед запуском Claude Code.
+
+Новый ключ выпускается на https://21st.dev/mcp (старые ключи Magic сброшены и
+не работают).
 
 Инструменты сервера: `generate` (генерация UI-компонентов), `get_inspiration`,
 `search` по каталогу компонентов/тем/шаблонов, `search_logo`. Старые имена
